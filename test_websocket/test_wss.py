@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# https://www.bilibili.com/video/av17118368/?p=103
 
 import time
 from ws4py.client.threadedclient import WebSocketClient
