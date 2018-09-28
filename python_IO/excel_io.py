@@ -15,7 +15,7 @@ table = data.sheet_by_name('Sheet1') # 通过名称获取sheet
 print(table.col_values(0)[1:]) # 读取整列
 for a in table.col_values(0)[1:]:
     if a:
-        print(a)
+        print('逐行打印：' + str(a))
 """获取所有sheet"""
 print(data.sheet_names())
 """获取sheet名字"""
@@ -23,11 +23,16 @@ print(data.sheet_names()[1])
 """获取单元格数据类型"""
 print(table.cell(0, 0).ctype) # ctype : 0 empty,1 string, 2 number, 3 date, 4 boolean, 5 error
 """强制转换数字"""
-number = 6.0
-if number == int(number):
-    int(number)
-else:
-    number = number
+for a in table.col_values(0)[1:]:
+    if a:
+        try:
+            if a == int(a):
+                a = int(a)
+            else:
+                a = a
+        except:
+            a = a
+        print('逐行打印：' + str(a))
 """"""
 """"""
 """"""
