@@ -38,16 +38,17 @@ import json
 # print('ok')
 
 fr = open("url.txt", "r", encoding="utf-8")
-links = fr.readlines()[0]
-name = links.split('\t', 1)[0]
-url = "http://www.ximalaya.com" + links.split('\t', 1)[1]
-req = urllib.request.Request(url)
-req.add_header('User-Agent',
-               'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36')
-response = urllib.request.urlopen(req)
-result = response.read().decode('utf-8')
-jsons = BeautifulSoup(result, "html.parser")
-print(jsons)
+items = fr.readlines()
+i = 1
+for item in items:
+    print(i)
+    name = item.split('\t', 1)[0]
+    url = item.split('\t', 1)[1]
+    audio_file = urllib.request.urlopen(url)
+    get_file = audio_file.read()
+    with open('C:\\zhaopeng\\01-items\\01-doc\\三国演义\\' + name + '.m4a', 'wb') as f:
+        f.write(get_file)
+    i += 1
 
 
 # for id in id:
