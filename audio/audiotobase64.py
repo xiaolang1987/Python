@@ -23,7 +23,7 @@ f_out = open('base64_result.txt', 'w')
 for item in allfile:
     print(item)
     cmd = open(item, 'rb')
-    dd = str(audio.b64encode(cmd.read()), 'utf-8')
+    dd = str(base64.b64encode(cmd.read()), 'utf-8')
     print(dd)
     # f_out.write(item + '\n')
     f_out.write(dd + '\n')

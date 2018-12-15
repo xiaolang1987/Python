@@ -1,79 +1,42 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+import http.client
 import urllib.request
-from bs4 import BeautifulSoup
 import json
-# import os
-# import re
+import os
 
-# path = "C:\\zhaopeng\\01-items\\01-AutoTest\\Python\\larnPython\\"
-# os.chdir(path)
+download_list = [["零基础国际音标", "18368956", "1"]]
+#   ,["", "", ""] ["零基础国际音标", "18368956", "1"]
+for list in download_list:
+    foldername = list[0]
+    albumId = list[1]
+    looptime = list[2]
+    try:
+        os.mkdir("C:\\zhaopeng\\01-items\\01-doc\\" + foldername)
+    except:
+        pass
+    for x in range(int(looptime)):
+        x = x + 1
+        print(x)
+        conn = http.client.HTTPSConnection("www.ximalaya.com")
+        headers = {
+            'cache-control': "no-cache",
+            'postman-token': "13aa2553-fcfd-2212-2d11-1f9094ca1d20"
+            }
+        conn.request("GET", "/revision/play/album?albumId=" + albumId + "&pageNum=" + str(x) + "&sort=-1&pageSize=30", headers=headers)
+        res = conn.getresponse()
+        data = res.read()
+        print(data)
 
-# id = ['28455189', '28455463', '28456840', '28456841', '28456842']
-#
-# for id in id:
-#     id = str(id)
-#     url = 'http://www.ximalaya.com/tracks/' + id + '.json'
-#     print(id)
-#
-#     req = urllib.request.Request(url)
-#     req.add_header('User-Agent',
-#                    'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36')
-#     response = urllib.request.urlopen(req)
-#     result = response.read().decode('utf-8')
-#     print(result)
-#
-#     jsons = json.loads(result)
-#     url = jsons['play_path_64']
-#     name = jsons['title']
-#
-#     print(jsons)
-#     print(url)
-#     print(name)
-#
-#     # audio_file = urllib.request.urlopen(url)
-#     # get_file = audio_file.read()
-#     #
-#     # with open(name + '.m4a', 'wb') as f:
-#     #     f.write(get_file)
-#
-# print('ok')
-
-fr = open("url.txt", "r", encoding="utf-8")
-items = fr.readlines()
-i = 1
-for item in items:
-    print(i)
-    name = item.split('\t', 1)[0]
-    url = item.split('\t', 1)[1]
-    audio_file = urllib.request.urlopen(url)
-    get_file = audio_file.read()
-    with open('C:\\zhaopeng\\01-items\\01-doc\\三国演义\\' + name + '.m4a', 'wb') as f:
-        f.write(get_file)
-    i += 1
-
-
-# for id in id:
-#     id = str(id)
-#     print(id)
-#     url = 'http://www.ximalaya.com/tracks/' + id + '.json'
-#
-#     req = urllib.request.Request(url)
-#     req.add_header('User-Agent',
-#                    'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36')
-#     response = urllib.request.urlopen(req)
-#     result = response.read().decode('utf-8')
-#
-#     jsons = json.loads(result)
-#     url = jsons['play_path_64']
-#     name = jsons['title']
-#
-#     print(jsons)
-#     print(url)
-#     print(name)
-#
-#     audio_file = urllib.request.urlopen(url)
-#     get_file = audio_file.read()
-#     print(type(audio_file))
-#
-#     with open(name + '.m4a', 'wb') as f:
-#         f.write(get_file)
-#
+        all_content = json.loads(data.decode("utf-8"))['data']['tracksAudioPlay']
+        for i in range(len(all_content)):
+            name = all_content[i]['trackName'].split('[', 1)[0]
+            url = all_content[i]['src']
+            print(name + '\t' + url)
+            print("获得链接，正在下载....")
+            audio_file = urllib.request.urlopen(url)
+            get_file = audio_file.read()
+            with open('C:\\zhaopeng\\01-items\\01-doc\\' + foldername + '\\' + name + '.m4a', 'wb') as f:
+                f.write(get_file)
+                print("下载完成...." + '\n')
