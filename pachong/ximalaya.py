@@ -6,8 +6,12 @@ import urllib.request
 import json
 import os
 
+"""
+喜马拉雅爬虫
+"""
+
 download_list = [["零基础国际音标", "18368956", "1"]]
-#   ,["", "", ""] ["零基础国际音标", "18368956", "1"]
+#   ,["", "", ""]
 for list in download_list:
     foldername = list[0]
     albumId = list[1]
