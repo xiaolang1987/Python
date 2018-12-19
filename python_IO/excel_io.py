@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# pip install xlrd  安装读模块
-# pip install xlwt 安装写模块
-# 参考    https://www.cnblogs.com/MrLJC/p/3715783.html
-#           https://www.cnblogs.com/linyfeng/p/7123423.html
+
+"""
+pip install xlrd  安装读模块
+pip install xlwt 安装写模块
+参考  https://www.cnblogs.com/MrLJC/p/3715783.html
+     https://www.cnblogs.com/linyfeng/p/7123423.html
+"""
 
 import xlrd
 import xlwt
