@@ -18,7 +18,7 @@ import os
 # path = "C:\\zhaopeng\\test\\1\\2\\"
 # if os.path.exists(path) is False:
 #     os.makedirs(path)  # 可以创建多级目录
-    # os.mkdir(path)  # 只能创建最后一级文件夹
+#     os.mkdir(path)  # 只能创建最后一级文件夹
 
 """删除文件夹"""
 # path = "C:\\zhaopeng\\test\\1\\2\\"
