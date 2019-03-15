@@ -4,7 +4,7 @@
 import time
 import pymysql
 
-db = pymysql.connect('101.201.73.129', 'reader', '8TDURgAtWcYU6rTm', 'turing_platform_log', 3318, charset="utf8")
+db = pymysql.connect('*.*.*.*', 'reader', '8TDURgAtWcYU6rTm', 'turing_platform_log', 3318, charset="utf8")
 
 cursor = db.cursor()
 sql_select = 'SELECT * FROM platform_cloud_log_201805 WHERE apikey IN ("108bd270ef2d489f8bf714fde5ece5fc","aecdc3aa66824f6a9c84ac1b1531e698","05e7822d0cf14a22bd7aa37deafe7b60","3c03046e3bdd4594bf9f4b4337575f50","c099c14ffcbe4cc9ae5b0797e0555209","57e62a88572e4d4e811325c1bbce35b5","573f9f6108ef44f5a4f8f31110c5bf73")AND((create_date >= "2018-05-23 12:00:00" AND create_date <= "2018-05-23 13:59:59")) ORDER BY apikey LIMIT 10'
