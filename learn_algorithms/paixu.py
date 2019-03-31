@@ -8,38 +8,50 @@ https://www.cnblogs.com/onepixel/articles/7674659.html
 
 
 # 冒泡排序
-def mao_pao(list_a):
-    for l in range(len(list_a)-1, 0, -1):
+def mao_pao(array):
+    for l in range(len(array)-1, 0, -1):
         for i in range(l):
-            if list_a[i] > list_a[i+1]:
-                list_a[i], list_a[i+1] = list_a[i+1], list_a[i]
-    return list_a
+            if array[i] > array[i+1]:
+                array[i], array[i+1] = array[i+1], array[i]
+    return array
 
 
 # 插入排序
-def cha_ru(list_a):
-    for i in range(len(list_a)):
+def cha_ru(array):
+    for i in range(len(array)):
         j = i-1
-        key = list_a[i]
+        key = array[i]
         while j >= 0:
-            if list_a[j] > key:
-                list_a[j+1], list_a[j] = list_a[j], key
+            if array[j] > key:
+                array[j+1], array[j] = array[j], key
             j -= 1
-    return list_a
+    return array
 
 
 # 选择排序
-def xuan_ze(list_a):
-    for i in range(len(list_a)):
+def xuan_ze(array):
+    for i in range(len(array)):
         min_index = i
-        for j in range(i+1, len(list_a)):
-            if list_a[j] < list_a[min_index]:
+        for j in range(i+1, len(array)):
+            if array[j] < array[min_index]:
                 min_index = j
-        list_a[min_index], list_a[i] = list_a[i], list_a[min_index]
-    return list_a
+        array[min_index], array[i] = array[i], array[min_index]
+    return array
 
 
-list_a = [3, 44, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48]
-# list_a = [11, 22, 1]
-print(xuan_ze(list_a))
+# 快排
+def quick_sort(array):
+    if len(array) < 2:
+        return array
+    else:
+        pivot = array[0]
+        less = [s for s in array[1:] if s <= pivot]
+        greater = [s for s in array[1:] if s >= pivot]
+        return quick_sort(less) + [pivot] + quick_sort(greater)
+
+
+array = [3, 44, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48]
+# array = [11, 22, 1]
+print(quick_sort(array))
+
 
