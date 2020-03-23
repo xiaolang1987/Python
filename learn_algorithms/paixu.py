@@ -50,8 +50,8 @@ def quick_sort(array):
         return quick_sort(less) + [pivot] + quick_sort(greater)
 
 
-array = [3, 44, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48]
-# array = [11, 22, 1]
+# array = [3, 44, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48]
+array = [11, 1]
 print(quick_sort(array))
 
 
